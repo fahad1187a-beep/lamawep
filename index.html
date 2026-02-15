@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>VR TECH Platform</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f3f4f6;
+direction:rtl;
+}
+
+nav{
+background:#0f172a;
+color:white;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+nav span{font-size:22px;font-weight:bold;}
+
+nav button{
+background:#4f46e5;
+border:none;
+color:white;
+padding:8px 18px;
+border-radius:8px;
+cursor:pointer;
+margin:4px;
+}
+
+section{display:none;padding:60px;}
+.active{display:block;}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.card img{width:170px;}
+
+.badge{
+background:#16a34a;
+color:white;
+padding:6px 12px;
+border-radius:10px;
+display:inline-block;
+margin-bottom:8px;
+}
+
+.old{
+text-decoration:line-through;
+color:#888;
+}
+
+.new{
+color:#e11d48;
+font-size:22px;
+font-weight:bold;
+}
+
+.main{
+background:#4f46e5;
+border:none;
+color:white;
+padding:10px 22px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.productPage{
+display:flex;
+gap:50px;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.productPage img{
+width:300px;
+border-radius:18px;
+}
+
+.box{
+background:white;
+padding:40px;
+border-radius:18px;
+max-width:480px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.names{
+margin-top:40px;
+background:#0f172a;
+color:white;
+padding:18px;
+border-radius:14px;
+text-align:center;
+font-weight:bold;
+}
+
+.invoice,.admin{
+background:white;
+padding:40px;
+border-radius:18px;
+}
+
+a{color:#4f46e5;}
+
+@media(max-width:700px){
+section{padding:30px;}
+.productPage{flex-direction:column;}
+nav{justify-content:center;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<span>VR TECH</span>
+<div>
+<button onclick="show('home')">Store</button>
+<button onclick="show('login')">Login</button>
+<button onclick="show('cart')">Cart</button>
+<button onclick="show('admin')">Dashboard</button>
+<button onclick="toggleLang()">AR/EN</button>
+</div>
+</nav>
+
+<section id="home" class="active">
+<h1 id="storeTitle">أجهزة الواقع الافتراضي</h1>
+
+<div class="products">
+
+<div class="card">
+<div class="badge">خصم رمضان 10٪</div>
+<img src="images/c:\Users\pc\Desktop\images\vr_product.jpg">
+<h3>نظارة الواقع الافتراضي VR Meta Quest</h3>
+<p class="old">١٥٧٠﷼</p>
+<p class="new">١٤١٣﷼</p>
+<button class="main" onclick="openProduct('quest')">عرض</button>
+</div>
+
+<div class="card">
+<div class="badge">خصم رمضان 10٪</div>
+<img src="images/c:\Users\pc\Desktop\images\1.jpg">
+<h3>نظارة الواقع المعزز AR HoloLens</h3>
+<p class="old">١٨٩٠﷼</p>
+<p class="new">١٧٠١﷼</p>
+<button class="main" onclick="openProduct('pro')">عرض</button>
+</div>
+
+<div class="card">
+<div class="badge">خصم رمضان 10٪</div>
+<img src="images/c:\Users\pc\Desktop\images\2.jpg">
+<h3>نظارة الواقع المختلط MR Vision Pro</h3>
+<p class="old">٢١٠٠﷼</p>
+<p class="new">١٨٩٠﷼</p>
+<button class="main" onclick="openProduct('ultra')">عرض</button>
+</div>
+
+</div>
+
+<div class="names">
+لمى المقاطي – داليا الحسن
+<br><br>
+<button class="main" onclick="show('about')">من نحن</button>
+
+<div style="margin-top:20px;line-height:1.8;">
+<p>٢٧/٨/١٤٤٧هـ — مشروع التقنية الرقمية</p>
+
+<p>
+زودنا بتقييمك عبر الرابط:
+<br>
+<a href="https://forms.office.com/Pages/ResponsePage.aspx?id=s9hDZGs37kiKqsY0_4zp6v-dgwrtbflKpRVZiN_r6sNUQ0U5QTRYNlQwSVVWT1VMSlZUTDg4OUdFNi4u" target="_blank">
+اضغط هنا للتقييم
+</a>
+</p>
+
+<p>عند وجود مشكلة تواصل معنا: 505957249</p>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="box">
+<h2>من نحن</h2>
+<p>نحن متجر سعودي لنظارات الواقع الافتراضي والمعزز والمختلط</p>
+<button class="main" onclick="show('home')">العودة</button>
+</div>
+</section>
+
+<section id="product">
+<div class="productPage">
+<img id="pImg">
+<div>
+<h2 id="pName"></h2>
+<p class="new" id="pPrice"></p>
+<p>تجربة واقع افتراضي غامرة بجودة عالية</p>
+<button class="main" onclick="show('cart')">إضافة للسلة</button>
+</div>
+</div>
+</section>
+
+<section id="cart">
+<div class="box">
+<h2>🛒 السلة</h2>
+<p id="cartItem"></p>
+<button class="main" onclick="show('checkout')">الدفع</button>
+</div>
+</section>
+
+<section id="checkout">
+<div class="box">
+<h2>💳 الدفع</h2>
+<input placeholder="الاسم الكامل">
+<input placeholder="رقم البطاقة">
+<input placeholder="العنوان">
+<button class="main" onclick="show('invoice')">تأكيد</button>
+</div>
+</section>
+
+<section id="invoice">
+<div class="invoice">
+<h2>📄 الفاتورة</h2>
+<p id="invoiceItem"></p>
+<p>تم تنفيذ الطلب بنجاح ✅</p>
+</div>
+</section>
+
+<section id="login">
+<div class="box">
+<h2>👤 تسجيل الدخول</h2>
+<input placeholder="البريد الإلكتروني">
+<input placeholder="كلمة المرور">
+<button class="main">دخول</button>
+</div>
+</section>
+
+<section id="admin">
+<div class="admin">
+<h2>📊 لوحة التحكم</h2>
+<p>عدد المنتجات: 3</p>
+<p>الطلبات اليوم: 12</p>
+<p>إجمالي المبيعات: 18,400﷼</p>
+</div>
+</section>
+
+<script>
+function show(p){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(p).classList.add("active");
+}
+
+function openProduct(t){
+let n,p,i;
+if(t=="quest"){n="نظارة الواقع الافتراضي VR Meta Quest";p="١٤١٣﷼ (خصم رمضان)";i="vr_product.jpg";}
+if(t=="pro"){n="نظارة الواقع المعزز AR HoloLens";p="١٧٠١﷼ (خصم رمضان)";i="vr_inside.jpg";}
+if(t=="ultra"){n="نظارة الواقع المختلط MR Vision Pro";p="١٨٩٠﷼ (خصم رمضان)";i="vr_main.jpg";}
+
+document.getElementById("pName").innerText=n;
+document.getElementById("pPrice").innerText=p;
+document.getElementById("pImg").src=i;
+document.getElementById("cartItem").innerText=n+" — "+p;
+document.getElementById("invoiceItem").innerText=n+" — "+p;
+show("product");
+}
+
+let ar=true;
+function toggleLang(){
+if(ar){
+document.getElementById("storeTitle").innerText="Virtual Reality Devices";
+document.body.direction="ltr";
+ar=false;
+}else{
+document.getElementById("storeTitle").innerText="أجهزة الواقع الافتراضي";
+document.body.direction="rtl";
+ar=true;
+}
+}
+</script>
+
+</body>
+</html>
